@@ -59,6 +59,7 @@ La piattaforma deve gestire tutto il processo di un noleggio, che è costituito 
         string marca
         string modello
         string posizioneGPS
+        float prezzoAlgiorno
         enum categoria
         int cc
         int cv
@@ -149,17 +150,17 @@ La piattaforma deve gestire tutto il processo di un noleggio, che è costituito 
 
 ### Schema logico
 
-Veicolo(<u>Targa</u>, marca, modello, posizioneGPS, categoria, cc, cv, posti,optionals*)<br>
-
-Manutenzione(<u>idManutenzione</u>, fkVeicolo, fkOfficina kmVeicolo, data, descrizione,)<br>
+Veicolo(<u>Targa</u>, marca, modello, posizioneGPS, prezzoAlGiorno categoria, cc, cv, posti,optionals*)<br>
 
 Officina(<u>ragioneSociale</u>, indirizzo_Comune, indirizzo_Via, indirizzo_Civico, indirizzo_Cap,partitaIva, Telefono, email, tipologia)<br>
 
-metodoDiPagamento(<u>idMetodo</u>, nomeTitolare, cognomeTitolare, Tipogia, numeroCarta*, scadenzaCarta*,numeroConto*,ibanDestinatario)<br>
+Manutenzione(<u>idManutenzione</u>, fkVeicolo, fkOfficina, kmVeicolo, data, descrizione)<br>
 
-Stazione(<u>idStazione</u>, indirizzo_Comune, indirizzo_Via, indirizzo_Civico, indirizzo_Cap, coperto )<br>
+metodoDiPagamento(<u>idMetodo</u>, nomeTitolare, cognomeTitolare, Tipogia, numeroCarta*, scadenzaCarta*,numeroConto*,email*)<br>
 
-Utente(<u>codiceFiscale</u>, nome, cognome, dataDiNascita, luogoDiNacita)<br>
+Stazione(<u>idStazione</u>, indirizzo_Comune,indirizzo_Cap, indirizzo_Via, indirizzo_Civico,  coperto )<br>
+
+Utente(<u>codiceFiscale</u>, nome, cognome, dataDiNascita, comuneDiNacita)<br>
 
 Pagamento(<u>idPagamento</u>, fkUtente, fkMetodoDiPagamento, importo, causale*,dataPagamento, oraPagamento)<br>
 
