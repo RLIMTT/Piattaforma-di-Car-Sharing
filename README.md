@@ -164,12 +164,14 @@ Utente(<u>codiceFiscale</u>, nome, cognome, dataDiNascita, comuneDiNacita)<br>
 
 Pagamento(<u>idPagamento</u>, fkUtente, fkMetodoDiPagamento, importo, causale*,dataPagamento, oraPagamento)<br>
 
-Patente(<u>numeroPatente</u>, enteRilasciatore, dataRilascio, dataScadenza, tipologia )<br>
+Patente(<u>numeroPatente</u>, fkUtente, enteRilasciatore, dataRilascio, dataScadenza, tipologia )<br>
 
-Noleggio(<u>fkPrenotazione</u>,<u>dataRestituzione</u>, kmPercorsi, prezzoAlChilometro, extra)<br>
+Prenotazione(<u>idPrenotazione</u>, fkVeicolo, fkUtente, fkMetodoDIPagamento, fkStazione,dataPrenotazione, dataInizioNoleggio, oraInizioNoleggio, dataFineNoleggio, oraFineNoleggio)<br>
+
+Noleggio(<u>fkPrenotazione</u>,<u>dataRestituzione</u>, kmPercorsi, extra)<br>
 
 Recensione(<u>idRecensione</u>, <u>fkNoleggio</u>, dataPubblicazione, punteggio, descrizione)<br>
 
-Prenotazione(<u>idPrenotazione</u>, fkVeicolo, fkUtente, fkMetodoDIPagamento, fkStazione,dataPrenotazione, dataInizioNoleggio, oraInizioNoleggio, dataFineNoleggio, oraFineNoleggio)<br>
+
 
 ### Dizionario dei dati

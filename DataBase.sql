@@ -16,11 +16,14 @@ CREATE TABLE veicolo(
     cv int (4) unsigned zerofill not null,
     postiOmologati int (1)  unsigned not null,
     optionals set ("Aria condizionata", "Vetri oscurati","Tettuccioio panoramico") null,
+    
     CONSTRAINT posti
     CHECK (categoria = "Motociclo" and postiOmologati <=2 and optionals is null),
+    
     CONSTRAINT postimaggiori
     CHECK (cc>0 and cv>0 and postiOmologati>0)
 );
+
 CREATE TABLE officina(
     ragioneSociale varchar(255) not null primary key,
     indirizzo_comune varchar (34) not null,
@@ -32,6 +35,7 @@ CREATE TABLE officina(
     email varchar (30) not null,
     tipologia set ("Carrozzeria", "Officina", "Elettrauto")
 );
+
 CREATE TABLE manutenzione(
     idManutenzione int(6) unsigned zerofill not null AUTO_INCREMENT primary key,
     targa varchar(7) not null,
@@ -51,6 +55,7 @@ CREATE TABLE manutenzione(
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
+
 CREATE TABLE metodoDiPagamento(
     idMetodo int (2) unsigned zerofill not null AUTO_INCREMENT primary key,
     nomeTitolare varchar(15) not null,
@@ -70,6 +75,7 @@ CREATE TABLE metodoDiPagamento(
     CONSTRAINT Paypal
     CHECK(tipologia = "Paypal" and numeroCarta is null and scadenzaCarta is null and numeroConto is  null and email is not null )
 );
+
 CREATE TABLE stazione(
     idStazione varchar(5) not null primary key,
     indirizzo_comune varchar (34) not null,
@@ -85,6 +91,7 @@ CREATE TABLE utente(
     dataDiNascita date not null,
     comuneDiNascita varchar(34) not null
 );
+
 CREATE TABLE pagamento(
     idPagamento int(9) unsigned zerofill not null AUTO_INCREMENT primary key,
     codiceFiscale varchar(16) not null,
@@ -105,4 +112,93 @@ CREATE TABLE pagamento(
     FOREIGN KEY (idMetodo) REFERENCES metodoDiPagamento(idMetodo)
     ON DELETE CASCADE 
     ON UPDATE CASCADE
+);
+
+CREATE TABLE patente(
+    numeroPatente varchar(10) not null primary key,
+    codiceFiscale varchar(16) not null,
+    enteRilasciatore varchar(5) not null,
+    dataRilacio date not null,
+    dataScadenza date not null,
+    tipologia set("AM","A1","A2","A","B1","B","C1","C","D1","D","BE","C1E","CE","D1E","DE") not null,
+    index (codiceFiscale),
+
+    CONSTRAINT fkUtentePatente
+    FOREIGN KEY (codiceFiscale) REFERENCES utente(codiceFiscale)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
+CREATE TABLE prenotazione(
+    idPrenotazione varchar (7) not null primary key,
+    targa varchar (7) not null,
+    codiceFiscale varchar(16) not null,
+    idMetodo int (2) unsigned zerofill not null,
+    idStazione varchar(5) not null,
+    dataPrenotazione date not null,
+    dataInizioNoleggio date not null,
+    oraInizioNoleggio time not null,
+    dataPrevistaFineNoleggio date not null,
+    oraPrevistaFineNoleggio time not null,
+    index(targa),
+    index( codiceFiscale),
+    index( idMetodo),
+    index(idStazione),
+
+    CONSTRAINT fkVeicoloPrenotazione
+    FOREIGN KEY (targa) REFERENCES veicolo(targa)
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE,
+
+    CONSTRAINT codiceFiscalePrenotazione
+    FOREIGN KEY (codiceFiscale) REFERENCES utente(codiceFiscale)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+
+    CONSTRAINT idMetodoPrenotazione
+    FOREIGN KEY (idMetodo) REFERENCES metodoDiPagamento(idMetodo)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE, 
+
+    CONSTRAINT idStazionePrenotazione
+    FOREIGN KEY (idStazione) REFERENCES stazione(idStazione)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
+CREATE TABLE noleggio(
+    idPrenotazione varchar (7) not null,
+    dataRestituzioneEffettiva date not null,
+    kmPercorsi int(5) unsigned zerofill not null,
+    extra set ("Multa","Danni","Sforamento data","Sforamento chilometri") null,
+    importoExtra float (5,3) null,
+    PRIMARY KEY(idPrenotazione, dataRestituzioneEffettiva),
+    index (idPrenotazione),
+
+    CONSTRAINT fkPrenotazione
+    FOREIGN KEY (idPrenotazione) REFERENCES prenotazione(idPrenotazione)
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE,
+
+    CONSTRAINT NOTextraImporto
+    CHECK (extra IS NULL AND importoExtra IS NULL),
+
+    CONSTRAINT extraImporto
+    CHECK (extra IS NOT NULL AND importoExtra IS NOT NULL)
+);
+
+CREATE TABLE recensione(
+    idRecensione int (6) unsigned zerofill not null AUTO_INCREMENT primary key,
+    idPrenotazione varchar (7) not null,
+    dataRestituzioneEffettiva date not null,
+    dataPubblicazione date not null,
+    punteggio int(1) not null,
+    descrizione varchar(255) not null,
+    index (idPrenotazione,dataRestituzioneEffettiva),
+
+    CONSTRAINT fkPrenotazioneRecensione
+    FOREIGN KEY (idPrenotazione,dataRestituzioneEffettiva) REFERENCES noleggio(idPrenotazione, dataRestituzioneEffettiva)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+    /*scrivere pk ho fatto così*/
 );
