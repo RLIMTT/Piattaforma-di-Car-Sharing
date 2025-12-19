@@ -170,8 +170,6 @@ La piattaforma deve gestire tutto il processo di un noleggio, che è costituito 
 
 ```
 
-![Diagramma ER](er.png)
-
 ### Schema logico
 
 Veicolo(<u>Targa</u>, marca, modello, latitudine, longitudine, prezzoAlGiorno, categoria, cc, cv, posti,optionals*)
