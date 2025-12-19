@@ -15,7 +15,7 @@ CREATE TABLE veicolo(
     cc int(4) unsigned zerofill not null, 
     cv int (4) unsigned zerofill not null,
     postiOmologati int (1)  unsigned not null,
-    optionals set ("Aria condizionata", "Vetri oscurati","Tettuccioio panoramico") null,
+    optionals set ("Aria condizionata", "Vetri oscurati","Tettuccioio panoramico","Autoradio") null,
     
     CONSTRAINT posti
     CHECK (categoria = "Motociclo" and postiOmologati <=2 and optionals is null),
@@ -45,6 +45,7 @@ CREATE TABLE manutenzione(
     descrizione varchar (255) not null,
     INDEX (targa),
     INDEX (ragioneSociale),
+
     CONSTRAINT fkVeicolo
     FOREIGN KEY (targa) REFERENCES veicolo(targa)
     ON DELETE CASCADE
@@ -57,7 +58,7 @@ CREATE TABLE manutenzione(
 );
 
 CREATE TABLE metodoDiPagamento(
-    idMetodo int (2) unsigned zerofill not null AUTO_INCREMENT primary key,
+    idMetodo int (6) unsigned zerofill not null AUTO_INCREMENT primary key,
     nomeTitolare varchar(15) not null,
     cognomeTitolare varchar(15) not null,
     tipologia enum ("Bonifico","Carta di Credito", "Paypal") not null,
@@ -140,6 +141,7 @@ CREATE TABLE prenotazione(
     oraInizioNoleggio time not null,
     dataPrevistaFineNoleggio date not null,
     oraPrevistaFineNoleggio time not null,
+    MaxkmPrevisti int(6) unsigned zerofill not null,
     index(targa),
     index( codiceFiscale),
     index( idMetodo),
@@ -172,6 +174,8 @@ CREATE TABLE noleggio(
     kmPercorsi int(5) unsigned zerofill not null,
     extra set ("Multa","Danni","Sforamento data","Sforamento chilometri") null,
     importoExtra float (5,3) null,
+    tempoExtra int(2) unsigned zerofill null,
+    puntiPatenteTolti int(2) unsigned zerofill null,
     PRIMARY KEY(idPrenotazione, dataRestituzioneEffettiva),
     index (idPrenotazione),
 
@@ -184,7 +188,14 @@ CREATE TABLE noleggio(
     CHECK (extra IS NULL AND importoExtra IS NULL),
 
     CONSTRAINT extraImporto
-    CHECK (extra IS NOT NULL AND importoExtra IS NOT NULL)
+    CHECK (extra IS NOT NULL AND importoExtra IS NOT NULL),
+
+    CONSTRAINT tempoExtra
+    CHECK(extra = "Sforamento data" and tempoExtra is not null ),
+
+    CONSTRAINT MultaExtra
+    CHECK (extra = "Multa" and puntiPatenteTolti is not null)
+
 );
 
 CREATE TABLE recensione(
@@ -200,5 +211,6 @@ CREATE TABLE recensione(
     FOREIGN KEY (idPrenotazione,dataRestituzioneEffettiva) REFERENCES noleggio(idPrenotazione, dataRestituzioneEffettiva)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-    /*scrivere pk ho fatto così*/
+    /*Ho fatto una referenza doppia perchè all'interno dell'entità noleggio c'è una chiave primaria doppia e 
+    facendo due constraint diversi mi dava errore*/
 );
