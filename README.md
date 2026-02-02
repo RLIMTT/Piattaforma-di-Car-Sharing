@@ -200,7 +200,7 @@ Descrizione di tabelle e campi:
 
 #### Veicolo
 
-La tabella veicolo contiene i dati di tutti i veicoli presenti sulla piattaforma. Pero ogni veicolo si tiene la targa per identificare univocamente un veicolo, la targa è una stringa di 6 caratteri. Inoltre risulta fondamentale salvarsi marca e modello per aiutare gli utenti a scegliere un veicolo. Come in ogni piattaforma, per l'azienda che affitta i veicoli è fondamentale sapere in ogni momento dove si trovano i propri veicoli e ciò viene fatto con i due attributi che indicano latitudine e longitudine. Inoltre per ogni veicolo si tiene conto del prezzo al giorno in modo da riuscire poi a calcolare il prezzo di ogni noleggio in base al numero di giorni del noleggio. Dopodichè i veicoli si distinguono con un attributo di tipo enum in autovetture e motocicli. Per ogni veicolo si tiene conto dei parametri del motore quali cavalli e cilindrata e i posti omologati. Nel caso dei motocicli i posti omologati massimi sono 2 e nel caso delle autovetture il limite di 9 posti (limite imposto per legge a autevetture e autocarri) è imposto dalla lunghezza della variabile che prevede solo un numero intero da una cifra (da 0 a 9) e limitata da un vincolo che lo vincola >0. Infine c'è un attributo di tipo set per includere gli optionals, esso è disponibile solo se il veicolo in questione è un'autovettura.
+La tabella veicolo contiene i dati di tutti i veicoli presenti sulla piattaforma. Pero ogni veicolo si tiene la targa per identificare univocamente un veicolo, la targa è una stringa di 6 caratteri. Inoltre risulta fondamentale salvarsi marca e modello per aiutare gli utenti a scegliere un veicolo. Come in ogni piattaforma, per l'azienda che affitta i veicoli è fondamentale sapere in ogni momento dove si trovano i propri veicoli e ciò viene fatto con i due attributi che indicano latitudine e longitudine. Inoltre per ogni veicolo si tiene conto del prezzo al giorno in modo da riuscire poi a calcolare il prezzo di ogni noleggio in base al numero di giorni del noleggio. Dopodichè i veicoli si distinguono con un attributo di tipo enum in autovetture e motocicli. Per ogni veicolo si tiene conto dei parametri del motore quali cavalli e cilindrata e i posti omologati. Nel caso dei motocicli i posti omologati massimi sono 2 e nel caso delle autovetture il limite di 9 posti (limite imposto per legge a autevetture e autocarri) è imposto dalla lunghezza della variabile che prevede solo un numero intero da una cifra (da 0 a 9) e limitata da un vincolo che lo vincola >0. Infine c'è un attributo di tipo set per includere gli optionals, esso è disponibile solo se il veicolo in questione è un'autovettura. Per migliorare la qualità del sito si mette anche il link a un'immagine della vettura.
 
 #### Officina
 
@@ -242,6 +242,18 @@ L'entità noleggio tiene traccia di un noleggio il cui veicolo è già stato ret
 
 In seguito ad aver fatto un noleggio l'utente può scrivere una recensione. Le recensioni sono identificate univocamente da un attributo intero con auto_increment essendo un numero progressivo, HA un riferimento diretto al noleggio effettuato per evitare eche alcune persone possano lasciaer una recensione senza aver neanche fatto un noleggio. Inoltre si tiene traccia della data di pubblicazione della recensione, di un punteggio (da 0 a 9) e una descrizione.
 
-## Conclusioni
+## Visualizzazione sito
 
-Per migliorare l'applicazione di gestione del car sharing sarebbe necessario implementare uno script php per rendere più precisi i collegamenti degli extra con dei controlli ad esempio sulle date di retituzione o i chilometri percorsi. Inoltre facendo questo script si riesce a calcolare il costo di ogni noleggio.
+Il sito prevede 3 parti, una parte dell'utente noleggiatore, una parte dell utente noleggiante e una parte di un utente non ancora registaro.
+
+### Home page
+
+La home page è la prima pagina che appare quando si apre il sito, in  cui ci sono i veicoli disponibili e non nelle diverse sedi, con eventuali filtri.
+
+### Schermata veicolo
+
+Una volta individuato il veicolo da noleggiare dalla home page si clicca su di esso e si apre la schermata del veicolo dove si vedono maggiori informazioni su di esso e i periodi in cui esso è disponibile. se si vuole noleggiare il veicolo bisogna fare l'accesso. Da ogni veicolo è possibile vedere le sue recensioni.
+
+### Dashboard utente
+
+Essa è disponibile dal momento in cui si fa l'accesso, si vedono tutti i noleggi eseguiti in precednza, i dati dell'utente e le prenotazioni a proprio carico e modificare tutti i dati personali e di pagamento. Nel caso in cui l'utente faccia parte dello staff sarà possibile anche agiungere e rimuovere veicoli dal database aziendale, verificare tutti i noleggi di tutte le auto, inserire nuovi extra e mandare in officina il veicolo.

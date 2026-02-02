@@ -12,8 +12,8 @@ CREATE TABLE veicolo(
     posizioneGPSLon float(6,4) not null,
     prezzoAlGiorno float(6,2) not null,
     categoria enum("Autovettura","Motociclo") default "Autovettura",
-    cc int(4) unsigned zerofill not null, 
-    cv int (4) unsigned zerofill not null,
+    cc int(4) unsigned not null, 
+    cv int (4) unsigned not null,
     postiOmologati int (1)  unsigned not null,
     optionals set ("Aria condizionata", "Vetri oscurati","Tettuccioio panoramico","Autoradio","Bluetooth", "navigatore","Cruise control", "Telecamera posteriore") null,
     
@@ -217,11 +217,11 @@ CREATE TABLE recensione(
 INSERT INTO veicolo
 (targa, marca, modello, posizioneGPSLat, posizioneGPSLon, prezzoAlGiorno, categoria, cc, cv, postiOmologati, optionals)
 VALUES
-('AA111AA','Fiat','Panda',45.4642,9.1900,35.00,'Autovettura',0999,0069,5,'Aria condizionata,Bluetooth'),
-('BB222BB','Volkswagen','Golf',45.0703,7.6869,55.00,'Autovettura',1600,0110,5,'Navigatore,Cruise control'),
+('AA111AA','Fiat','Panda',45.4642,9.1900,35.00,'Autovettura',999,69,5,'Aria condizionata,Bluetooth'),
+('BB222BB','Volkswagen','Golf',45.0703,7.6869,55.00,'Autovettura',1600,110,5,'Navigatore,Cruise control'),
 ('CC333CC','Toyota','Yaris',43.7696,11.2558,45.00,'Autovettura',1000,0072,5,'Autoradio'),
-('DD444DD','Yamaha','MT07',44.4949,11.3426,30.00,'Motociclo',0689,0074,2,NULL),
-('EE555EE','Honda','SH150',41.9028,12.4964,25.00,'Motociclo',0153,0016,2,NULL);
+('DD444DD','Yamaha','MT07',44.4949,11.3426,30.00,'Motociclo',689,74,2,NULL),
+('EE555EE','Honda','SH150',41.9028,12.4964,25.00,'Motociclo',153,16,2,NULL);
 
 INSERT INTO officina
 (ragioneSociale, indirizzo_comune, indirizzo_cap, indirizzo_via, indirizzo_civico, partitaIva, telefono, email, tipologia)
