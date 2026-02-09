@@ -252,8 +252,37 @@ La home page è la prima pagina che appare quando si apre il sito, in  cui ci so
 
 ### Schermata veicolo
 
-Una volta individuato il veicolo da noleggiare dalla home page si clicca su di esso e si apre la schermata del veicolo dove si vedono maggiori informazioni su di esso e i periodi in cui esso è disponibile. se si vuole noleggiare il veicolo bisogna fare l'accesso. Da ogni veicolo è possibile vedere le sue recensioni.
+Una volta individuato il veicolo da noleggiare dalla home page si clicca su di esso e si apre la schermata del veicolo dove si vedono maggiori informazioni su di esso e i periodi in cui esso è disponibile. Se si vuole noleggiare il veicolo bisogna fare l'accesso. Da ogni veicolo è possibile vedere le sue recensioni, in particolare si visualizza il nome utente della persona che l'ha scritta, la targa del vaicolo su cui scrive la recensione e l'eventuale risposta dello staff a tale recensione.
 
 ### Dashboard utente
 
 Essa è disponibile dal momento in cui si fa l'accesso, si vedono tutti i noleggi eseguiti in precednza, i dati dell'utente e le prenotazioni a proprio carico e modificare tutti i dati personali e di pagamento. Nel caso in cui l'utente faccia parte dello staff sarà possibile anche agiungere e rimuovere veicoli dal database aziendale, verificare tutti i noleggi di tutte le auto, inserire nuovi extra e mandare in officina il veicolo.
+In particolare:
+
+#### Dashboard iniziale cliente
+
+Si visualizzano 4 card in cui si vedono dati personali, prenotazioni, nolegggi e metodi di pagamento: cliccando su ognuna di esse si aprono delle pagine dedicate.
+
+1. Dalla card si vedono alcuni dati personali, cliccando si possono visualizzare tutti i dati e cliccare sul tasto "modifica" per autoricaricare la pagina e modificare i dati personali.
+
+2. Si vede nella card il numero di prenotazioni attive, entrando si vedono nel dettaglio tutte le prenotazioni a proprio carico, con la possibilità di modificarle.
+
+3. Si vede nella card il numero di noleggi effettuati, entrando si vede nel dettaglio tutto lo storico di noleggi a proprio carico con la possibiltà di aggiungere una recensione su un noleggio tramite una pagina dedicata.
+    3.1 Pagina per la recensione
+
+4. Nella card si vede il metodo di pagamento predefinito, entrando nella pagina si visualizzano tutti i metodi di pagamento siponibili per l'utente: si può settare come predifinito un altro metodo e eliminare / aggiungere dei metodi di pagamento autoricaricando la pagina, non c'è l modifica, si elimina e si rimette.
+
+#### Dashboard iniziale staff
+
+Una volta entrati nella dashboard dello staff si visualizza sempre una struttura  a card:
+
+1. Si vedono nella card tutti i dati della persona, se si clicca si apre la dahboard cliente di quell'utente da cui ci sono tutte le funzionalità e in più un tasto per tornare alla dashboard staff.
+
+2. Si vedono nella card il numero di noleggi da consegnare e ritirare nella giornata odierna nella sede in cui lavora il dipendente in quetsione, entrando si vedono tutte le prenotazioni e i noleggi dei veicoli nella sede specificata o in tutte, e selezionare la data(trmite filtri). Una prentazione è proprio da questa sezione che l'utente trasforma una prenotazione in noleggio, inserendo i dati mancanti. Da qui può creare un sinistro e inviare un veicolo in officina.
+2.1 Pagina ritiro auto, si possono m andare anche le auto in manutenzione vedi 3.1
+
+3. Nella card si vede il numero di veicoli assegnati alla sede in questione, cliccando si visualizzano tutti i veicoli nel dettaglio, con possibilità di inviare un veicolo in manutenzione e aggiungere, rimuovere o modificare i veicoli nel database. Aache qui si possono vedere tutti i veicoli di tutte le sedi.
+3.1 form richiesta manutenzione
+3.2 aggiungi veicolo, se riceve la targa di un veicolo già presente lo modifica
+
+4. Si vedono nella card il numero delle vecensioni dei veicoli assegnati alla propria sede, cliccando si possono vedere le recensioni di tutto il database e cerare una risposta per esseautoricaricando la pagina
