@@ -1,0 +1,56 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+h1{
+    color : black;
+}
+input:valid{
+    background-color: greenyellow;
+}
+input:invalid{
+    background-color: red;
+}
+body{
+    background: #000;
+}
+header {
+    background-color: white;
+
+}
+header .logo img{
+    background-color: red;
+    width: 5rem;
+    height: auto;
+    right: 10px;
+}
+header .menu{
+    right: 10px;
+    top: 25px;
+    position: absolute;
+}
+header ul{
+    list-style-type: none;
+}
+header .menu a{
+    text-decoration: none;
+    color: black;
+}
+header li{
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #000;
+    padding: 3px;   
+}
+.titolopag{
+    background-color:yellow;
+    size: 20 px;
+    text-align: center;
+}
+
+.veicoli{
+    color:white;
+    background-color: blue;
+}

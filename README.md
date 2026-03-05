@@ -256,7 +256,7 @@ Una volta individuato il veicolo da noleggiare dalla home page si clicca su di e
 
 ### Dashboard utente
 
-Essa è disponibile dal momento in cui si fa l'accesso, si vedono tutti i noleggi eseguiti in precednza, i dati dell'utente e le prenotazioni a proprio carico e modificare tutti i dati personali e di pagamento. Nel caso in cui l'utente faccia parte dello staff sarà possibile anche agiungere e rimuovere veicoli dal database aziendale, verificare tutti i noleggi di tutte le auto, inserire nuovi extra e mandare in officina il veicolo.
+Essa è disponibile dal momento in cui si fa l'accesso, si vedono tutti i noleggi eseguiti in precedenza, i dati dell'utente e le prenotazioni a proprio carico e modificare tutti i dati personali e di pagamento. Nel caso in cui l'utente faccia parte dello staff sarà possibile anche agiungere e rimuovere veicoli dal database aziendale, verificare tutti i noleggi di tutte le auto, inserire nuovi extra e mandare in officina il veicolo.
 In particolare:
 
 #### Dashboard iniziale cliente
