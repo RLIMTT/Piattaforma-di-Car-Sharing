@@ -20,7 +20,7 @@
     <?php
         include("inc/datiConnessione.php");
         try{
-            $sql= "SELECT * FROM prenotazione";
+            $sql= "SELECT  targa, marca, modello, postiOmologati, prezzoAlGiorno, idPrenotazione FROM veicolo INNER JOIN prenotazione USING (targa)";
             include("inc/startConn.php");
             echo "<div class =\"veicoli\">";
             for($x = 0; $x<3; $x++){
@@ -29,47 +29,38 @@
                     echo "<h1>Error!!</h1> ";
                 }else{
                     $prenotazioni = $results->fetchAll(PDO::FETCH_ASSOC);
-                    $p1 = $prenotazioni[0];//elemento maggiore
-                    $occe=0;//occorrenze maggiori
-                    $pe = $p1;//elemento momentaneo
-
-                    
-
-                    foreach($prenotazioni as $k){
-                        $occ1 = 0;//occorrenze momentanee
-                        $sql2 = "SELECT marca, modello FROM veicolo WHERE targa = '".$k["targa"]."'";
-                        $result = $conn->query($sql2);
-                        $r1 = $results->fetchAll(PDO::FETCH_ASSOC);
+                    $v1 = $prenotazioni[0];//elemento maggiore
+                    $occv1=0;//occorrenze maggiori
+                    $occvm=0;//occorrenze momentanee
+                    foreach($prenotazioni as $v){
+                        $occvm=0;//occorrenze momentanee
                         foreach($prenotazioni as $p){
-                            $sql2 = "SELECT marca, modello FROM veicolo WHERE targa = '".$p["targa"]."'";
-                            $result = $conn->query($sql2);
-                            $r2 = $results->fetchAll(PDO::FETCH_ASSOC);
-                            
-                            if($r2["marca"] == $r1["marca"] && $r2["modello"] == $r1["modello"]){
-                                $occ1 ++;
-                                $pe = $p;
+                            if($v["marca"] == $p["marca"] && $v["modello"] == $p["modello"]){
+                                $occvm++;
                             }
                         }
-                        if($occ1 > $occe){
-                            $p1 = $pe;
-                            $occe = $occ1;
+                        if($occvm > $occv1){
+                            $v1 = $v;
+                            $occv1 = $occvm;
                         }
                     }
-                    echo "<p>" .$r1["marca"]. " " . $r1["modello"] ."<br/>";
-                    echo "Posti omologati: " . $r1["postiOmologati"]."<br/>";
-                    echo "<p class = \"prezzoCard\">A partire da soli ". $p1["prezzoAlGiorno"]." euro al giorno!!</p> <br/>";
+                    echo "<div class ='veicolo'>";
+                    echo "<img src='img/$v1[marca]$v1[modello].jpg' alt='imgAuto'>";
+                    echo "<p class = 'mm'>" .$v1["marca"]. " " . $v1["modello"] ."</p>";
+                    echo "<p class = 'posti'>Posti omologati: " . $v1["postiOmologati"]."</p>";
+                    echo "<p class = 'prezzo'>A partire da soli ". $v1["prezzoAlGiorno"]." euro al giorno!!</p> ";
                     echo "<a href=\"login_utente.php\" id=\"Accesso\">Scopri ora !!</a>";
-                    echo "</p>";
+                    echo" </div>";
                 }
                 if($x == 0){
-                    $sql = $sql . " WHERE NOT (marca = '" .$r1["marca"]. "') AND NOT (modello = '".$r1["modello"]."')";
+                    $sql = $sql . " WHERE NOT (marca = '" .$v1["marca"]. "') AND NOT (modello = '".$v1["modello"]."')";
                 }elseif($x == 1){
-                     $sql = $sql . " AND NOT (marca = '" .$r1["marca"]. "') AND NOT (modello = '".$r1["modello"]."')";
+                     $sql = $sql . " AND NOT (marca = '" .$v1["marca"]. "') AND NOT (modello = '".$v1["modello"]."')";
                 }
+                 
             }
             echo" </div>";
-
-            
+           
         }catch(PDOException $e){
             echo"<h2 style='color:red'>".$e->getMessage()."</h2>";
         }
