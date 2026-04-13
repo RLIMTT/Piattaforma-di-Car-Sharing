@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+.intro{
+    color:white;
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 2rem;
+}
+.elements{
+    padding: 2rem;
+    background-color:#201f1f;
+    list-style: none;
+    
+}
+.elements li{
+    justify-content: center;
+    display:flex;
+    width: 42 rem;
+}
+
+.elements a{
+    text-decoration: none;
+}
+
+.records{
+    border-radius: 1rem;
+    border: solid;
+    border-color: #444141;
+    margin: 0.5rem;
+    list-style: none;
+    
+}
+
+.rigaPari{
+    background-color:#292727;
+    border-radius: 1rem;
+
+    display: flex;
+    flex-direction: row;
+
+    padding: 0.5rem;
+    
+    
+}
+.rigaDispari{
+    background-color:#151515;
+    border-radius: 1rem;
+    
+    display: flex;
+    flex-direction: row;
+
+    padding: 0.5rem;
+}
+
+.records li{
+    display: block;
+    text-decoration: none;
+    color: white;
+    margin:rem;
+    text-align: left;
+    justify-content: left;
+    margin: 0 2rem;
+    width: 10rem;
+}
+.records li.small{
+    width: 2rem ;
+    text-align: center;
+}

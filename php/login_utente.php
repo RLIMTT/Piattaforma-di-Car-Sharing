@@ -1,21 +1,20 @@
 <html>
     <head> 
-        <link rel ="stylesheet" href="login.css"> 
-        
+        <link rel ="stylesheet" href="login.css">   
     </head>
     <body>
         <div class='container'>
             <div class="login">
                 <p class='accedi'>Accedi</p>
                 <img src = 'logo.png' alt='logo'>
-                <form method='post' action='login_back.php'>
+                <form method='post' id = "loginForm" action='login_back.php'>
                     <label for ='username'>Username</label>
                     <br/>
                     <input type="text" name="username" required/>
                     <br/>
                     <label for ='password'>Password</label>
                     <br/>
-                    <input id='pwd' type='password'name='password' value = 'a' />
+                    <input id='pwd' type='password'name='password'  />
                     <br/>
                     <button type='submit'>Accedi</button>
                     
@@ -23,7 +22,7 @@
             </div> 
             <div class= "noAccount">
                 <p class='register'>Non hai un account?
-                    <a href="registra_utenti.php" id="Registro">Registrati</a>
+                    <a href="registra_utente.php" id="Registro">Registrati</a>
                 </p>  
             </div>
         </div>
@@ -57,7 +56,7 @@
 				console.log('Original hashed before submission:', hashed);
 				
 				// Submit form
-				e.target.submit();
+				e.target.submit();      
                 e.target.reset();
 			});
 		</script>

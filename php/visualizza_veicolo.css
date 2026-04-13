@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+.area{
+    color:white;
+    background-color: #201f1f;
+    
+}
+.area img{
+    margin: 3rem;
+} 

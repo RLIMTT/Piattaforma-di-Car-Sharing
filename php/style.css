@@ -54,7 +54,7 @@ header li{
 .veicoli .veicolo{ 
     background-color: #2b2b2b;
     border-radius: 10px;
-    border-color: black;
+    border-color: #2b2b2b;
     border-style: solid;
     margin:5px;
     padding:5px;

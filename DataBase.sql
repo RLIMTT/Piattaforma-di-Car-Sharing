@@ -97,7 +97,8 @@ CREATE TABLE utente(
     email varchar(256) not null, 
     telefono varchar(20) not null, 
     pass varchar(256) null, 
-    salt varchar(256) null
+    salt varchar(64) null,
+    `admin` BOOLEAN not null default false
 );
 
 CREATE TABLE pagamento(
@@ -284,66 +285,21 @@ INSERT INTO stazione VALUES
 INSERT INTO utente 
 (username, codiceFiscale, nome, cognome, dataDiNascita, comuneDiNascita, email, telefono, pass, salt)
 VALUES
-('mrossi','RSSMRA80A01F205X','Mario','Rossi','1980-01-01','Milano','mario.rossi@email.it','3331111111',
-'08f1acf1d720286293525035996a897e321e6a11f4783bb85113c42585ec62ae',
-'9a3f1e6c7b8d4f2a6e3c1b5d9f0a2c4e7d8b6f1a3c5e7f9d0b2c4e6f8a1d3b5c9a3f1e6c7b8d4f2a6e3c1b5d9f0a2c4e7d8b6f1a3c5e7f9d0b2c4e6f8a1d3b5c9a3f1e6c7b8d4f2a6e3c1b5d9f0a2c4e7d8b6f1a3c5e7f9d0b2c4e6f8a1d3b5c'),
-
-('lverdi','VRDLGI85B12F205Y','Luigi','Verdi','1985-02-12','Milano','luigi.verdi@email.it','3331111112',
-'8663c7ee05ab44207a62fda541d442b257b81cf392f19b9d2658280e39cad166',
-'b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6'),
-
-('lbianchi','BNCLRA90C23F205Z','Laura','Bianchi','1990-03-23','Monza','laura.bianchi@email.it','3331111113',
-'3635b1d8b23c7dae92046e6088f8642d5dd41bdeb74aa3e8a95a7b1fcc15b109',
-'c3d4e5f6a7b8c9d0e1f2031425364758697a8b9cadbecfd0e1f2031425364758c3d4e5f6a7b8c9d0e1f2031425364758697a8b9cadbecfd0e1f2031425364758c3d4e5f6a7b8c9d0e1f2031425364758697a8b9cadbecfd0e1f2031425364758c3d4e5f6a7b8c9d0e1f2031425364758'),
-
-('gneri','NRAGPP88D10F205K','Giuseppe','Neri','1988-04-10','Como','giuseppe.neri@email.it','3331111114',
-'ff7d6e3b7227c64011258896ea3eed1e2dc661249952e0d4be2d70ec355ef7b6',
-'d4e5f6a7b8c9d0e1f2031425364758697a8b9cadbecfd0e1f203142536475869d4e5f6a7b8c9d0e1f2031425364758697a8b9cadbecfd0e1f203142536475869d4e5f6a7b8c9d0e1f2031425364758697a8b9cadbecfd0e1f203142536475869d4e5f6a7b8c9d0e1f203142536475869'),
-
-('pferrari','FRNPLA92E15F205L','Paola','Ferrari','1992-05-15','Bergamo','paola.ferrari@email.it','3331111115',
-'796cbbb87267b0289a17ccdecd3422761484a94906a3c2754957922c276a050e',
-'e5f6a7b8c9d0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697ae5f6a7b8c9d0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697ae5f6a7b8c9d0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697ae5f6a7b8c9d0e1f2031425364758697a'),
-
-('mgalli','GLLMRC87F20F205M','Marco','Galli','1987-06-20','Varese','marco.galli@email.it','3331111116',
-'d7f1c5b627a752d2bcc52b65530bec9adfc40900aac5347080c324338c0ab3e7',
-'f6a7b8c9d0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697a8bf6a7b8c9d0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697a8bf6a7b8c9d0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697a8bf6a7b8c9d0e1f2031425364758697a8b'),
-
-('aconti','CNTNDR95G30F205N','Andrea','Conti','1995-07-30','Brescia','andrea.conti@email.it','3331111117',
-'1d163b9197c8df9dc9ff59407459bfaadacc0685cb97f47ac58bdfc3b5e7f191',
-'a7b8c9d0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697a8b9ca7b8c9d0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697a8b9ca7b8c9d0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697a8b9ca7b8c9d0e1f2031425364758697a8b9c'),
-
-('fricci','RCCFNC91H11F205P','Francesca','Ricci','1991-08-11','Pavia','francesca.ricci@email.it','3331111118',
-'4794e112185af7fa854cae71d1b8a6229af1b1f706b41e02059ee1f20cb30e33',
-'b8c9d0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697a8b9cadb8c9d0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697a8b9cadb8c9d0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697a8b9cadb8c9d0e1f203142536475869'),
-
-('dmartini','MRTDNL89I09F205Q','Daniele','Martini','1989-09-09','Lodi','daniele.martini@email.it','3331111119',
-'ca31583bdd3d3ca22b7854b72eed28fae5f614bb035220485c19ca2e945dd401',
-'c9d0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697a8b9cadbec9d0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697a8b9cadbec9d0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697a8b9cadbec9d0e1f203142536475869'),
-
-('clombardi','LMBCRL93L18F205R','Carla','Lombardi','1993-10-18','Lecco','carla.lombardi@email.it','3331111120',
-'c2151bd75ef7d364f096882c6aa7d322e4f631ed515efca560798ecc28c42441',
-'d0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697a8b9cadbecfd0e1f2031425364758697a8b9cadbecfd0e1f203142536475869'),
-
-('lporta','PRTLCU86M22F205S','Luca','Porta','1986-08-22','Milano','luca.porta@email.it','3331111121',
-'9396b58e3e4a184f616174c944c53be27a15d99d36aeebbe40cc6fe02cae6aa3',
-'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
-
-('sbelli','BLSSMN94N13F205T','Simone','Belli','1994-07-13','Como','simone.belli@email.it','3331111122',
-'f920d9aa48eb7438da1b7e6ff6cf404d113859d558c6c4e83a2ae0e72aca3502',
-'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'),
-
-('vcaruso','CRSVLR88P30F205U','Valeria','Caruso','1988-09-30','Monza','valeria.caruso@email.it','3331111123',
-'24fe2ff8e736d6ba46c6bb1b4329c80b03b3ec2ed9f10a22f456a21db1ee2bd2',
-'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc'),
-
-('ftesta','TSTFBA91R15F205V','Fabio','Testa','1991-10-15','Brescia','fabio.testa@email.it','3331111124',
-'313ee420941558b6e3150ff076542a18308ee16099aa93e2d649629b92d333f8',
-'dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd'),
-
-('gmarini','MRNGNN90S01F205W','Gianna','Marini','1990-11-01','Pavia','gianna.marini@email.it','3331111125',
-'18b0aa06b06f62a206842fa05cfc29b81769b513aaad989e5941b30dae390ccc',
-'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee');
-
+('mrossi','RSSMRA80A01F205X','Mario','Rossi','1980-01-01','Milano','mario.rossi@email.it','3331111111',NULL,NULL),
+('lverdi','VRDLGI85B12F205Y','Luigi','Verdi','1985-02-12','Milano','luigi.verdi@email.it','3331111112',NULL,NULL),
+('lbianchi','BNCLRA90C23F205Z','Laura','Bianchi','1990-03-23','Monza','laura.bianchi@email.it','3331111113',NULL,NULL),
+('gneri','NRAGPP88D10F205K','Giuseppe','Neri','1988-04-10','Como','giuseppe.neri@email.it','3331111114',NULL,NULL),
+('pferrari','FRNPLA92E15F205L','Paola','Ferrari','1992-05-15','Bergamo','paola.ferrari@email.it','3331111115',NULL,NULL),
+('mgalli','GLLMRC87F20F205M','Marco','Galli','1987-06-20','Varese','marco.galli@email.it','3331111116',NULL,NULL),
+('aconti','CNTNDR95G30F205N','Andrea','Conti','1995-07-30','Brescia','andrea.conti@email.it','3331111117',NULL,NULL),
+('fricci','RCCFNC91H11F205P','Francesca','Ricci','1991-08-11','Pavia','francesca.ricci@email.it','3331111118',NULL,NULL),
+('dmartini','MRTDNL89I09F205Q','Daniele','Martini','1989-09-09','Lodi','daniele.martini@email.it','3331111119',NULL,NULL),
+('clombardi','LMBCRL93L18F205R','Carla','Lombardi','1993-10-18','Lecco','carla.lombardi@email.it','3331111120',NULL,NULL),
+('lporta','PRTLCU86M22F205S','Luca','Porta','1986-08-22','Milano','luca.porta@email.it','3331111121',NULL,NULL),
+('sbelli','BLSSMN94N13F205T','Simone','Belli','1994-07-13','Como','simone.belli@email.it','3331111122',NULL,NULL),
+('vcaruso','CRSVLR88P30F205U','Valeria','Caruso','1988-09-30','Monza','valeria.caruso@email.it','3331111123',NULL,NULL),
+('ftesta','TSTFBA91R15F205V','Fabio','Testa','1991-10-15','Brescia','fabio.testa@email.it','3331111124',NULL,NULL),
+('gmarini','MRNGNN90S01F205W','Gianna','Marini','1990-11-01','Pavia','gianna.marini@email.it','3331111125',NULL,NULL);
 
 INSERT INTO metodoDiPagamento (nomeTitolare,cognomeTitolare,tipologia,numeroCarta,scadenzaCarta,numeroConto,email) VALUES
 ('Mario','Rossi','Carta di Credito',1234567812345678,'2028-12-31',NULL,NULL),

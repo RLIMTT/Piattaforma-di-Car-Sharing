@@ -25,7 +25,7 @@ input{
     
 }
 
-.login{
+.registra{
    
     display: flex;
     flex-direction: column;
@@ -39,10 +39,9 @@ input{
     border-style: solid;
     border-color: #201f1f;
     background-color: #201f1f;
-    
 
 }
-.login .accedi{
+.registra .registrati{
     text-align: center;
     font-size: 30px;
     margin-bottom: 2rem;
@@ -50,28 +49,29 @@ input{
     margin-top: 5rem;
 
 }
-.login img {
+.registra img {
     width: auto;
     height: 12rem;
     width: 23rem;
     object-fit: cover;
 }
 
-.login form{
+.registra form{
     font-size: 20px;
-    margin: 3rem 0;
 }
 
-.login input{
-    font-size: 20px;
+.registra input{
+    font-size: 1rem;
+    padding: 0.5rem;
     margin-bottom: 1rem ;
+    margin-top: 0.3rem;
     text-align: center;
     justify-content: left;
-
+    border-radius: 1rem;
 }
 
+
 .container button{
-    text-decoration: none;
     font-size: 20px;
     width: 300px;
     color:white;
@@ -80,30 +80,4 @@ input{
     border-radius: 1rem;
     background-color:  #201f1f;
 
-}
-.container button a{
-    text-decoration: none;
-    color:white;
-}
-
-.container .register{
-    margin: 1rem 0;
-    color:white;
-    font-size: 1rem;
-
-}
-
-.container .noAccount p{
-    margin: 1rem 0;
-    color:rgb(255, 255, 255);
-    font-size: 1rem;
-}
-
-.container .noAccount a{
-    color:white;
-}
-.container .noAccount{
-    align-items: center;
-    justify-content: center;
-    text-align: center;
 }
